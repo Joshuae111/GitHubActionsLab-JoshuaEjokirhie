@@ -1,0 +1,43 @@
+name: Multi-Platform Testing
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ubuntu-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Print system info
+        run: uname -a
+      - name: Create and display file
+        run: |
+          echo "Running on Ubuntu system" > os_info.txt
+          cat os_info.txt
+
+  windows-job:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Print system info
+        run: systeminfo
+      - name: Create and display file
+        run: |
+          echo Windows environment active > os_info.txt
+          type os_info.txt
+
+  macos-job:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Print system info
+        run: uname -a
+      - name: Create and display file
+        run: |
+          echo "macOS environment active" > os_info.txt
+          cat os_info.txt
